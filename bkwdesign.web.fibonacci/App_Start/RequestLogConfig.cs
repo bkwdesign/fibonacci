@@ -37,8 +37,8 @@ namespace bkwdesign.web.math
 
         public static void PersistLog(System.Data.DataTable dt)
         {
-            System.Data.DataSet ds = new System.Data.DataSet("RequestLog");
-            ds.Tables.Add(dt);
+            System.Data.DataSet ds = dt.DataSet;
+           // ds.Tables.Add(dt);
             string filePath = String.Format("{0}/{1}", GetExecutingPath(), REQUESTLOG_FILENAME);
             ds.WriteXml(filePath);
         }
