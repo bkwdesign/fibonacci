@@ -33,7 +33,8 @@ namespace bkwdesign.web.math.Models
         /// <summary>
         /// incoming request from user
         /// </summary>
-        [Display(Name="Nth number"), DisplayFormat(NullDisplayText="")]
+        [Display(Name = "Nth number"), DisplayFormat(NullDisplayText = ""), Range(0, 9999,
+        ErrorMessage = "This input is currently resticted. {0} must be between {1} and {2}.")]
         public Nullable<long> UserQuery
         {
             get { return m_userQuery; }
