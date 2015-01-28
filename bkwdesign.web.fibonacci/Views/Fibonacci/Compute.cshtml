@@ -49,6 +49,10 @@
 
             self.responseData = ko.observableArray([]);
             self.responseData.subscribe(function (newValue) {
+                if (typeof (newValue) === 'undefined') {
+                    alert("You just encountered my azure issue where every other commit seems to cause the WebApi's (JSON.NET, I presume) serialization to act weird.");
+                    return;
+                }
                 if (newValue.length > 0) {
                     //alert('new items arrived');
                     var newHeight = parseInt($("table").height()) + 550;
