@@ -83,7 +83,7 @@
                 success: function (data, status, xhr) {
                     var resp = eval("(" + xhr.responseText + ")");
                     if (typeof resp !== 'undefined') {
-                        ko_model.responseData(resp[0]);//put data into KO model..
+                        ko_model.responseData(resp.RecentQueries);//put data into KO model..
                     }
                 },
                 error: function (xhr, status, error) {
