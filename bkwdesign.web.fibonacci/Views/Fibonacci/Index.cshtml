@@ -1,0 +1,16 @@
+﻿@model bkwdesign.web.math.Models.MathResponse
+@{
+    ViewBag.Title = "bkwdesign math";
+}
+
+
+
+@using (Html.BeginForm("Compute", "Fibonacci"))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <h2>Get Your Nth Fibonacci Number</h2>
+        @Html.EditorFor(m => m.UserQuery)
+        <input type="submit" value="Get Number" />
+    </fieldset>
+}

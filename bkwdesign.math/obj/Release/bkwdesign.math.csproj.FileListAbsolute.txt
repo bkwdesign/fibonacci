@@ -1,0 +1,4 @@
+C:\GitHub\fibonacci\bkwdesign.math\bin\Release\bkwdesign.math.dll
+C:\GitHub\fibonacci\bkwdesign.math\bin\Release\bkwdesign.math.pdb
+C:\GitHub\fibonacci\bkwdesign.math\obj\Release\bkwdesign.math.dll
+C:\GitHub\fibonacci\bkwdesign.math\obj\Release\bkwdesign.math.pdb

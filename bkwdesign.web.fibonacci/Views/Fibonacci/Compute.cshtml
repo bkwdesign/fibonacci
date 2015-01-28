@@ -1,0 +1,102 @@
+﻿@model bkwdesign.web.math.Models.MathResponse
+
+@{
+    ViewBag.Title = "Compute";
+}
+
+@using (Html.BeginForm("Compute", "Fibonacci"))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <h2>Get Your Nth Fibonacci Number</h2>
+
+
+        @Html.EditorFor(m => m.UserQuery)
+        
+        <input type="submit" value="Get Nth Fibonacci" />
+        <br />
+        @Html.ValidationMessageFor(m => m.UserQuery)
+
+        @if(!bkwdesign.web.math.Models.MathResponse.IsEmpty(Model)){
+            @Html.Partial("Partial/MathResponse", Model);
+           
+            
+            <table data-bind='visible: responseData().length > 0'>
+                <thead><th>Nth</th><th>Fibonacci</th><th>IP</th><th>Date</th></thead>
+            <tbody data-bind="foreach: responseData">
+            <tr>
+                <td data-bind='text: $data.UserQuery'></td>
+                <td data-bind='text: $data.Response'></td>
+                <td data-bind='text: $data.RequestOrigin'></td>
+                <td data-bind='text: $data.RequestDateTime.substring(0,10)'></td>
+            </tr>
+            </tbody>
+            </table>
+
+            <button id="history">Show Recent Queries</button>
+        }    
+        
+        
+    </fieldset>
+}
+
+
+@section scripts{
+    
+    <script type="text/javascript">
+        var historyitems = function () {
+            var self = this;
+
+            self.responseData = ko.observableArray([]);
+            self.responseData.subscribe(function (newValue) {
+                if (newValue.length > 0) {
+                    //alert('new items arrived');
+                    var newHeight = parseInt($("table").height()) + 450;
+
+                    var newHeightStr = newHeight + 'px';
+
+                    $("fieldset").css({ 'height': newHeightStr });
+
+                    $("#history").fadeOut('slow');
+                } else {
+                    //alert('nothing');
+                }
+
+            }.bind(this));
+        }
+        //instantiate an instance of Knockout model
+        ko_model = new historyitems();
+
+        $(document).ready(function () {
+            $("#history").click(function (e) {
+                e.preventDefault(); // cancel default behavior
+                getHistory();
+            });
+
+            ko.applyBindings(ko_model, $("fieldset")[0]);
+        });
+        function getHistory() {
+            $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                url: '/api/ResponseLog/',
+                success: function (data, status, xhr) {
+                    var resp = eval("(" + xhr.responseText + ")");
+                    if (typeof resp !== 'undefined') {
+                        ko_model.responseData(resp.RecentQueries);//put data into KO model..
+                    }
+                },
+                error: function (xhr, status, error) {
+                    handleError(xhr, status, error);
+                }//end of error ajax
+            }); //end of ajax config and function call
+        }
+
+        function handleError(xhr, status, error) {
+            if (console) {
+                console.log(error);
+            }
+        }
+    </script>
+}
+

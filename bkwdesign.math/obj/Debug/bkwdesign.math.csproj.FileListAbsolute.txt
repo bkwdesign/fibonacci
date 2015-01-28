@@ -1,0 +1,5 @@
+C:\GitHub\fibonacci\bkwdesign.math\bin\Debug\bkwdesign.math.dll
+C:\GitHub\fibonacci\bkwdesign.math\bin\Debug\bkwdesign.math.pdb
+C:\GitHub\fibonacci\bkwdesign.math\obj\Debug\bkwdesign.math.csprojResolveAssemblyReference.cache
+C:\GitHub\fibonacci\bkwdesign.math\obj\Debug\bkwdesign.math.dll
+C:\GitHub\fibonacci\bkwdesign.math\obj\Debug\bkwdesign.math.pdb
